@@ -1,0 +1,36 @@
+library(matrixStats)
+library(orthopolynom)
+
+age_year <- seq(1,max(phen$Age_inter_year))
+head(age_year)
+
+### The time values must be scaled to a range from -1 to +1. The scaling formula is
+at <- as.matrix(-1+2*(age_year-min(age_year))/(max(age_year)-min(age_year)))
+M <- cbind(as.matrix(rep(1,nrow(at))),at)
+n <- 2
+
+# Coefficients of lengendre
+b <- legendre.polynomials(n, normalized=T)
+gama0 <- polynomial.coefficients(b)
+head(gama0)
+aux <- rbind(gama0[[1]],gama0[[2]])
+aux[upper.tri(aux)] <- 0
+gamat <- aux
+gama <- t(gamat)
+
+# Creating the independent transformed variable
+K <- M%*%gama
+seq_y <- seq(1,max(phen$Age_inter_year))
+K2 <- cbind(seq_y,K)
+K2 <- as.data.frame(K2)
+colnames(K2)<-c("seq_y","L0","L1")
+K2
+
+phen$L0 <- K2$L0[1]
+phen$L1 <- NA
+
+for(i in 1:nrow(phen)){
+phen$L1[i] <- K2$L1[K2$seq_y==phen$Age_inter_year[i]]
+}
+dim(phen)
+write.table(phen,file="2.phen_cow.txt",sep=" ",row.names=F,quote=F)

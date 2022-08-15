@@ -1,0 +1,47 @@
+# parameter file for renumf90: RRM HOM 0
+# $1 Accession
+# $2 rep
+# $3 age
+# $4 GLI
+# $5 Lo
+# $6 L1
+# $7 L2
+# $8 L3
+# $9 L4
+# $10 cluster group
+# $11 spline 1 $12 spline 2 $13 spline 3
+DATAFILE
+phen_rrm.txt
+TRAITS
+4 ##position of trait
+FIELDS_PASSED TO OUTPUT
+
+WEIGHT(S)
+
+RESIDUAL_VARIANCE
+ 1
+EFFECT ##fixed effect replicate or environment
+ 2 cross numer #ET_CT
+EFFECT ##fixed effect replicate or environment
+10 cov #ET_CT
+EFFECT
+ 1 cross alpha #animal
+RANDOM
+ animal
+FILE
+ ped.txt
+FILE_POS ## animal, sire and dam IDs, and two 0s 
+1 2 3 0 0 
+SNP_FILE
+geno1.txt
+PED_DEPTH
+0
+INBREEDING
+pedigree
+RANDOM_REGRESSION
+ data
+RR_POSITION
+ 5 6 7#polynomial will change depending on the order I am estimating
+OPTION alpha_size 25
+OPTION save_halfway_samples 10000
+OPTION map_file map.txt

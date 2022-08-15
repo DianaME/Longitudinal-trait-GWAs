@@ -1,0 +1,32 @@
+# BLUPF90 parameter file created by RENUMF90
+DATAFILE
+ renf90.dat
+NUMBER_OF_TRAITS
+           1
+NUMBER_OF_EFFECTS
+           5
+OBSERVATION(S)
+    1
+WEIGHT(S)
+ 
+EFFECTS: POSITIONS_IN_DATAFILE NUMBER_OF_LEVELS TYPE_OF_EFFECT[EFFECT NESTED]
+ 5         2 cross 
+ 6 1 cov 
+ 2        596 cov 7
+ 3        596 cov 7
+ 4        596 cov 7
+RANDOM_RESIDUAL VALUES
+   1.0000    
+ RANDOM_GROUP
+     3     4     5
+ RANDOM_TYPE
+ add_an_upginb
+ FILE
+renadd03.ped                                                                    
+(CO)VARIANCES
+   1.0000      0.10000      0.10000    
+  0.10000       1.0000      0.10000    
+  0.10000      0.10000       1.0000    
+OPTION SNP_file geno1.txt
+OPTION save_halfway_samples 10000
+OPTION map_file map.txt
